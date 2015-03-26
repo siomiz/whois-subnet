@@ -12,7 +12,7 @@ var isc = require('ip-subnet-calculator');
 whois.lookup(IPADDR, function(err, data){
   var lines = data.split("\n");
   for(n in lines){
-    if(lines[n].match(/^inetnum|NetRange/)){
+    if(lines[n].match(/^inetnum|NetRange|IP-Network-Block/)){
       var out = lines[n].match(/([0-9\.]+)/g);
       var subnets = isc.calculate(out[0], out[1]);
       for(s in subnets){
