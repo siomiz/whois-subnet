@@ -10,6 +10,10 @@ var whois = require('node-whois');
 var isc = require('ip-subnet-calculator');
 
 whois.lookup(IPADDR, function(err, data){
+  if(!data){
+    console.log(IPADDR + '/32');
+    return;
+  }
   var lines = data.split("\n");
   for(n in lines){
     if(lines[n].match(/^inetnum|NetRange|IP-Network-Block/)){
